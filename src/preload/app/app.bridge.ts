@@ -4,3 +4,7 @@ export const APP_BRIDGE = {
     QUIT: 'app:quit',
   },
 };
+
+export interface IAppBridge {
+  quitApp: () => void;
+}
