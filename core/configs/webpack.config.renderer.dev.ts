@@ -19,6 +19,11 @@ const renderDevConfig: webpack.Configuration = {
   module: {
     rules: [
       {
+        test: /\.(ts|tsx)$/,
+        use: ['ts-loader'],
+        exclude: /node_modules/,
+      },
+      {
         test: /\.s?css$/,
         use: [
           'style-loader',
@@ -66,6 +71,14 @@ const renderDevConfig: webpack.Configuration = {
       template: 'public/index.html',
     }),
   ],
+
+  resolve: {
+    extensions: ['.tsx', '.ts', '.jsx', '.js'],
+    alias: {
+      '@': path.resolve('src'),
+      '@@': path.resolve(),
+    },
+  },
 
   devServer: {
     static: {
