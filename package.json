@@ -5,8 +5,9 @@
   "author": "Nguyễn Đắc Chí",
   "license": "MIT",
   "scripts": {
-    "start": "ts-node ./core/scripts/check-port-in-use.js && npm run start:renderer",
-    "start:renderer": "cross-env NODE_ENV=development TS_NODE_TRANSPILE_ONLY=true webpack serve --config ./core/configs/webpack.config.renderer.dev.ts"
+    "dev": "ts-node ./core/scripts/check-port-in-use.js && npm run dev:renderer",
+    "dev:renderer": "cross-env NODE_ENV=development TS_NODE_TRANSPILE_ONLY=true webpack serve --config ./core/configs/webpack.config.renderer.dev.ts",
+    "dev:preload": "cross-env NODE_ENV=development TS_NODE_TRANSPILE_ONLY=true webpack --config ./core/configs/webpack.config.preload.dev.ts"
   },
   "devDependencies": {
     "@pmmmwh/react-refresh-webpack-plugin": "^0.5.5",

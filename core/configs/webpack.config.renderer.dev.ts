@@ -6,6 +6,7 @@ import path from 'path';
 import webpackPaths from './webpack.paths';
 import ReactRefreshWebpackPlugin from '@pmmmwh/react-refresh-webpack-plugin';
 import HtmlWebpackPlugin from 'html-webpack-plugin';
+import { spawn } from 'child_process';
 
 const port = process.env.PORT || 9000;
 
@@ -87,6 +88,27 @@ const renderDevConfig: webpack.Configuration = {
     port,
     hot: true,
     historyApiFallback: true,
+    setupMiddlewares: (middlewares) => {
+      console.log('Starting preload.js builder...');
+      const preloadProcess = spawn('npm', ['run', 'dev:preload'], {
+        shell: true,
+        stdio: 'inherit',
+      })
+        .on('close', (code: number) => process.exit(code!))
+        .on('error', (spawnError) => console.error(spawnError));
+
+      console.log('Starting Main Process...');
+      spawn('npm', ['run', 'dev:main'], {
+        shell: true,
+        stdio: 'inherit',
+      })
+        .on('close', (code: number) => {
+          preloadProcess.kill();
+          process.exit(code!);
+        })
+        .on('error', (spawnError) => console.error(spawnError));
+      return middlewares;
+    },
   },
 };
 
