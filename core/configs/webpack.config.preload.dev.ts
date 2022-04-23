@@ -9,6 +9,18 @@ const configPreloadDev: webpack.Configuration = {
   mode: 'development',
   target: 'electron-preload',
   entry: path.join(webpackPaths.srcPreloadPath, 'index.ts'),
+
+  plugins: [
+    new webpack.EnvironmentPlugin({
+      NODE_ENV: 'development',
+    }),
+
+    new webpack.LoaderOptionsPlugin({
+      debug: true,
+    }),
+  ],
+
+  watch: true,
 };
 
 export default merge(baseConfig, configPreloadDev);
