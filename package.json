@@ -1,8 +1,19 @@
 {
   "name": "selflearn-erw",
   "version": "1.0.0",
-  "main": "index.js",
-  "repository": "https://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@github.com/chinguyen98/selflearn-erw.git",
-  "author": "Nguyễn Đắc Chí <chind@hasaki.vn>",
-  "license": "MIT"
+  "repository": "https://github.com/chinguyen98/selflearn-erw.git",
+  "author": "Nguyễn Đắc Chí",
+  "license": "MIT",
+  "scripts": {
+    "start": "ts-node ./core/scripts/check-port-in-use.js"
+  },
+  "devDependencies": {
+    "@types/node": "^17.0.25",
+    "chalk": "4.1.2",
+    "detect-port": "^1.3.0",
+    "ts-node": "^10.7.0",
+    "typescript": "^4.6.3",
+    "webpack": "^5.72.0"
+  },
+  "dependencies": {}
 }
