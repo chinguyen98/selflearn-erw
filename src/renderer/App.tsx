@@ -1,6 +1,6 @@
 const App = () => {
   const handleQuitApp = () => {
-    
+
   }
 
   return (

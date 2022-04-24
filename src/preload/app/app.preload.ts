@@ -1,10 +1,14 @@
 import { contextBridge, ipcRenderer } from 'electron';
-import { APP_BRIDGE } from './app.bridge';
+import { APP_BRIDGE_API_KEY, APP_BRIDGE_CHANNELS, IAppBridge } from './app.bridge';
 
 const quitApp = () => {
-  ipcRenderer.send(APP_BRIDGE.CHANNELS.QUIT);
+  ipcRenderer.send(APP_BRIDGE_CHANNELS.QUIT);
 };
 
-contextBridge.exposeInMainWorld(APP_BRIDGE.KEY, {
-  ...quitApp,
+const appRenderer: IAppBridge = {
+  quitApp,
+};
+
+contextBridge.exposeInMainWorld(APP_BRIDGE_API_KEY, {
+  ...appRenderer,
 });

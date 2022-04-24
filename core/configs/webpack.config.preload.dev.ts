@@ -8,7 +8,7 @@ const configPreloadDev: webpack.Configuration = {
   devtool: 'inline-source-map',
   mode: 'development',
   target: 'electron-preload',
-  entry: path.join(webpackPaths.srcPreloadPath, 'index.ts'),
+  entry: path.join(webpackPaths.srcPreloadPath, 'preload.ts'),
 
   plugins: [
     new webpack.EnvironmentPlugin({
